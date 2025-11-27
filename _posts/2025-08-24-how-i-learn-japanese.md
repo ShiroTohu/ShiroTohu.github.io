@@ -2,8 +2,8 @@
 layout: post
 title: How I learn Japanese
 date: 2025-08-24 09:25 +1000
-categories: [Japanese]
-tags: [Japanese, Language Learning]
+categories: [Blogging, Other]
+tags: [japanese, language learning]
 ---
 ## Introduction
 Recently I have been learning Japanese in my spare time and it has been really fun! I wanted to showcase my workflow and how I go about learning Japanese. This blog post also covers some technical aspects like getting anki-sync working locally and installing fcxit5 and Mozc on Arch Linux. It also covers my schedule and how I go about doing things.
