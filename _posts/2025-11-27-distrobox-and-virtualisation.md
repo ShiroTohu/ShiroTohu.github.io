@@ -12,7 +12,7 @@ I use Arch Linux and I usually get all my software from the official repository,
 Sometimes the circumstances around a software I want to use or the errors I get from trying to use it result in needing to take alternative actions. Therefore I look to these two solutions of containerisation and virtualisation. Let's explore how I used these two technologies for [Cisco's Packet Tracer](https://wiki.archlinux.org/title/Packet_Tracer) and [MATLAB](https://wiki.archlinux.org/title/MATLAB).
 
 ## Using Distrobox for MATLAB
-MATLAB is software developed by MathWorks for programming and numeric computation. I needed this software for a course I was taking for university. I considered using [GNU Octave](https://octave.org/)an alternative to MATLAB but it proved to insufficient for the course. Alongside that I was on a time constraint as assignment deadlines loomed over me.
+MATLAB is software developed by MathWorks for programming and numeric computation. I needed this software for a course I was taking for university. I considered using [GNU Octave](https://octave.org/) an alternative to MATLAB but it proved to insufficient for the course. Alongside that I was on a time constraint as assignment deadlines loomed over me.
 
 > Since this use case was from a while ago I do not have the full details but I have some notes that I wrote for documentation if I ever had to encounter this problem again. 
 {: .prompt-info }
