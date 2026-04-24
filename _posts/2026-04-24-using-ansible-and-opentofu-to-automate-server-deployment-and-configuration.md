@@ -24,7 +24,7 @@ Last year I became increasingly frustrated managing my server infrastructure as 
 ## Quick Summary of the Technologies
 This blog post goes over OpenTofu and Ansible. I wanted to quickly discuss the purpose of these technologies and when you would use them. In simple terms, after planning your network infrastructure you can use OpenTofu to spin up virtual machines for on your preferred cloud provider using the *code* you have written. This is why it is called the term *Infrastructure as Code*. After the Virtual machines have been configured Ansible is used to automate the processes inside of the machine like installing packages and copying files.  
 
-![Homelab Diagram]('./assets/img/posts/automation/Process Diagram.png'){: width="400" height="200" }
+![Homelab Diagram](./assets/img/posts/automation/Diagram.png){: width="400" height="200" }
 You write peer reviews, submit pull requests, run unit tests on your code. Because you declare how your servers should look like it allows for repeatable results making your infrastructure more reliable. There are many benefits to using Infrastructure as Code and I am glad I have implemented it in my home deployment.
 
 I also want to stress that planning is very important for production environments. I believe that how you plan will determine how your code repository will turn out. I also believe that if not enough planning is done you'll end up having to refactor more times than needed. Make sure you understand the technologies you want to use and how you want services to communicate with each other.
