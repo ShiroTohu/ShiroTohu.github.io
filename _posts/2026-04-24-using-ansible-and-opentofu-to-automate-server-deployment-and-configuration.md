@@ -1,13 +1,5 @@
 ---
 layout: post
-title: 
-categories: [Blogging, Server]
-tags: [linux, docker, podman, distrobox, virtualisation]
-date: 2025-11-27 12:00 +1000
----
-
----
-layout: post
 title: Using Ansible and OpenTofu to Automate Server Deployment and Configuration
 categories:
   - Blogging
@@ -16,22 +8,26 @@ tags:
   - homelab
   - linux
   - server
-date: 2026-03-42 12:00 +1000
+date: 2026-04-24 10:00 +1000
 ---
 
 ## Introduction
 Last year I became increasingly frustrated managing my server infrastructure as it was becoming increasingly harder. It became immutable and hard to keep track of intricate details. I was quite concerned at my current deployment as humans are often prone to make errors and one small misconfiguration could lead to a security incident. Therefore, I set in finding ways to document my infrastructure, but what I found was much greater.
+
 ## Quick Summary of the Technologies
 This blog post goes over OpenTofu and Ansible. I wanted to quickly discuss the purpose of these technologies and when you would use them. In simple terms, after planning your network infrastructure you can use OpenTofu to spin up virtual machines for on your preferred cloud provider using the *code* you have written. This is why it is called the term *Infrastructure as Code*. After the Virtual machines have been configured Ansible is used to automate the processes inside of the machine like installing packages and copying files.  
 
-![Homelab Diagram](./assets/img/posts/automation/Diagram.png){: width="400" height="200" }
+![Process Diagram](./assets/img/posts/automation/Diagram.png)
+
 You write peer reviews, submit pull requests, run unit tests on your code. Because you declare how your servers should look like it allows for repeatable results making your infrastructure more reliable. There are many benefits to using Infrastructure as Code and I am glad I have implemented it in my home deployment.
 
 I also want to stress that planning is very important for production environments. I believe that how you plan will determine how your code repository will turn out. I also believe that if not enough planning is done you'll end up having to refactor more times than needed. Make sure you understand the technologies you want to use and how you want services to communicate with each other.
+
 ## Project Layout
 Due to the private nature of this project and general security concerns I won't be releasing the source code for my home deployment. But I want to share what I have done and the processes I followed in my project.
 
 In the project layout I have two separate folders. One for Ansible and one for OpenTofu. I like to have these two separated as opposed to having Ansible automatically deploy after server provisioning as it allows for more fine grained control and to use playbooks as tools.
+
 ### OpenTofu
 My OpenTofu configuration is quite simple as I have limited resources to work with. In my configuration I use the [bpg/proxmox](https://registry.terraform.io/providers/bpg/proxmox/latest/docs) provider and setup API keys on my Proxmox instance so that OpenTofu can interface with my Proxmox instance securely.
 
@@ -85,13 +81,10 @@ Depending on the services needed a list is provided to the Docker role telling A
 ## Further Improvements
 There are a fair amount of improvements I want to make, especially with Ansible as there are some glaring issues that I am facing currently.
 
-### Netbird VPN
 Netbird is the VPN provider that I want to deploy on my home lab, though, installation using docker is quite unique as it requires you to run a installation script to generate the necessary files to use docker compose. This means I have to make an exception to Netbird and how it is deployed by creating a special Ansible role for it and I cannot edit the compose file and re-upload it causing a lot of friction.
 
-### Grouping Compose Files in the Virtual Machine
 Another improvement I want to make is to group folders in respect to what virtual machine they run on. So `wazuh` would go in a management folder, `minecraft-server` would go in production etc. I believe this is very important as sometimes I have to run traefik on two virtual machines but the configuration is different.
 
-### Moving `debian_cloud_image` to their own Module
 Currently the `debian_cloud_image` resource that is used to pull the Debian cloud image from the internet sits inside the `vm` module. This means that every time a new virtual machine is created the cloud image is pulled from the internet. This means if you started 100 virtual machines you would end up downloading the cloud image 99 times more than needed.
 
 The `debian_cloud_image` resource should be parsed into the `vm` module instead. This would significantly reduce the time it takes to create all the virtual machines. Even with just 5 virtual machines it takes around 2 minutes from memory.
